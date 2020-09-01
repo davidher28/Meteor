@@ -3,23 +3,23 @@
 </head>
 
 <body>
-  <h1>La app meteor de deivid y mimi</h1>
-
-  {{> hello}}
-  {{> info}}
+  <h1>Temperatura promedio en Cali</h1>
+  {{> weather}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-<template name="info">
-  <h2>Learn Meteor!</h2>
+<template name="weather">
+  <h1>Registro estado del clima</h1>
+  <form class="add-weather">
+    <label>Temperatura</label>
+    <input type="text" name="degree" display="inline-block"/>  
+    <label display="inline-block" vertical-align="middle" >Estado del aire</label>
+    <input type="text" name="state"/>
+    <input type="submit" value="Submit" display="inline-block"/>
+  </form>
+  <br>
   <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+    {{#each weather}}
+      <li>{{degree}}</li>
+    {{/each}}
+  </ul>  
 </template>
