@@ -1,25 +1,68 @@
 <head>
   <title>MeteorApp</title>
 </head>
-
 <body>
-  <h1>Temperatura promedio en Cali</h1>
-  {{> weather}}
 </body>
 
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
+</template>
+
 <template name="weather">
-  <h1>Registro estado del clima</h1>
+<h1>Registro estado del clima</h1>
   <form class="add-weather">
     <label>Temperatura</label>
     <input type="text" name="degree" display="inline-block"/>  
     <label display="inline-block" vertical-align="middle" >Estado del aire</label>
     <input type="text" name="state"/>
-    <input type="submit" value="Submit" display="inline-block"/>
+    <input class="hoverable" type="submit" value="Guardar" display="inline-block"/>
   </form>
-  <br>
-  <ul>
-    {{#each weather}}
-      <li>{{degree}}</li>
-    {{/each}}
-  </ul>  
+    <table class="highlight centered">
+      <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Temperatura</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each weather}}
+        <tr>
+          <td>{{date}}</td>
+          <td>{{degree}}</td>
+          <td>{{state}}</td>
+          <td>
+            <a class="btn eliminar delete-weather">Eliminar</a>
+            <a href="/edit/{{_id}}" class="btn actualizar">Modificar</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</template>
+
+<template name="bar">
+  <nav class="cyan lighten-1 valign-wrapper" style="margin-bottom: 5px;">
+    <div style="margin-left: 10px;"> <h5>Temperatura en Cali</h5></div>
+  </nav>
+  <div class="row flex valign-wrapper">
+    <div class="col s12 m6 l6">
+      <h3 class=" center-align">Promedio actual</h3>
+    </div>
+    <div class="col s12 m6 l6"><img class="responsive-img" src="/resources/cali.jpg"/></div>
+  </div>
+  <div class="divider"></div>
+</template>
+
+<template name="edit">
+  <form action="/" class="update-weather">
+    <label>Temperatura</label>
+    <input type="text" value="{{degree}}" name="degree"/>  
+    <label>Estado del aire</label>
+    <input type="text" value="{{state}}" name="state"/>
+    <input class="btn actualizar" value="Actualizar" type="submit"/>
+  </form>
+  <a href="/" class="btn actualizar">Volver</a>
 </template>
