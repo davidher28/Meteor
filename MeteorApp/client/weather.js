@@ -1,13 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Weather } from '../imports/api/weatherDB'
-
 import './weather.html';
 
+
 Meteor.subscribe('weather');
+
 
 Router.configure({
   layoutTemplate: 'WeatherApplicationLayout'
 });
+
 
 Router.route('/', function () {
   this.render('weather', {
@@ -41,6 +43,13 @@ Router.route('/save', function () {
   });
 });
 
+Template.weather.onRendered(function(){
+  this.autorun(function(){
+    console.log(Weather.find().count());
+  });
+});
+
+
 
 Template.bar.helpers({
   bar() {
@@ -53,6 +62,7 @@ Template.bar.helpers({
     }
   },
 })
+
 
 Template.weather.helpers({
   weather() {
@@ -89,13 +99,11 @@ Template.edit.events({
   "submit .update-weather": function(event){
     var degree = event.target.degree.value;
     var state = event.target.state.value;
-    Weather.update(this._id, 
-      { $set: 
-        { 
-          degree: parseInt(degree), 
-          state: state 
-        }
-      }
-    );
+    Meteor.call('weather.update', {
+      _id: this._id,
+      degree: degree,
+      state: state
+    });
   }
 });
+
