@@ -1,7 +1,9 @@
 <head>
   <title>MeteorApp</title>
 </head>
+
 <body>
+
 </body>
 
 <template name="ApplicationLayout">
@@ -9,19 +11,11 @@
   {{> yield "main"}}
 </template>
 
-<template name="weather">
-<h1>Registro estado del clima</h1>
-  <form class="add-weather">
-    <label>Temperatura</label>
-    <input type="text" name="degree" display="inline-block"/>  
-    <label display="inline-block" vertical-align="middle" >Estado del aire</label>
-    <input type="text" name="state"/>
-    <input class="hoverable" type="submit" value="Guardar" display="inline-block"/>
-  </form>
-    <table class="highlight centered">
+<template style="width:100%;" name="weather">
+    <table class="centered">
       <thead>
         <tr>
-            <th>Fecha</th>
+            <th>Fecha registro</th>
             <th>Temperatura</th>
             <th>Estado</th>
             <th>Acciones</th>
@@ -31,9 +25,9 @@
         {{#each weather}}
         <tr>
           <td>{{date}}</td>
-          <td>{{degree}}</td>
+          <td>{{degree}}°</td>
           <td>{{state}}</td>
-          <td>
+          <td class="row">
             <a class="btn eliminar delete-weather">Eliminar</a>
             <a href="/edit/{{_id}}" class="btn actualizar">Modificar</a>
           </td>
@@ -45,24 +39,43 @@
 
 <template name="bar">
   <nav class="cyan lighten-1 valign-wrapper" style="margin-bottom: 5px;">
-    <div style="margin-left: 10px;"> <h5>Temperatura en Cali</h5></div>
-  </nav>
-  <div class="row flex valign-wrapper">
-    <div class="col s12 m6 l6">
-      <h3 class=" center-align">Promedio actual</h3>
+    <div style="margin-left: 10px;"> 
+      <h5>Temperatura en Cali</h5>
     </div>
-    <div class="col s12 m6 l6"><img class="responsive-img" src="/resources/cali.jpg"/></div>
+  </nav>
+  <div class="row flex valign-wrapper center-align">
+    <div class="col s12 m6 l6">
+      <h3 class="center-align">Promedio actual</h3>
+      <h4 class="center-align">{{bar}}°</h4>
+      <a href="/save" class="btn guardar">Agregar registro</a>
+    </div>
+    <div class="col s12 m6 l6"><img class="responsive-img no-padding" src="/resources/cali.jpg"/></div>
   </div>
-  <div class="divider"></div>
 </template>
 
 <template name="edit">
-  <form action="/" class="update-weather">
-    <label>Temperatura</label>
-    <input type="text" value="{{degree}}" name="degree"/>  
-    <label>Estado del aire</label>
-    <input type="text" value="{{state}}" name="state"/>
-    <input class="btn actualizar" value="Actualizar" type="submit"/>
-  </form>
-  <a href="/" class="btn actualizar">Volver</a>
+  <div class="marg">
+    <form action="/" class="update-weather">
+      <label>Temperatura</label>
+      <input type="text" value="{{degree}}" name="degree"/>  
+      <label>Estado del aire</label>
+      <input type="text" value="{{state}}" name="state"/>
+      <a href="/" class="btn eliminar">Volver</a>
+      <input class="btn guardar" value="Actualizar" type="submit"/>
+    </form>
+  </div>
+</template>
+
+<template name="save">
+  <div class="marg">
+    <h5>Registro estado del clima</h5>
+    <form action="/" class="add-weather">
+      <label>Temperatura</label>
+      <input type="text" name="degree" display="inline-block"/>  
+      <label display="inline-block" vertical-align="middle" >Estado del aire</label>
+      <input type="text" name="state"/>
+      <a href="/" class="btn eliminar">Volver</a>
+      <input class="btn guardar add-weather" type="submit" value="Guardar" display="inline-block"/>
+    </form>
+  </div>
 </template>

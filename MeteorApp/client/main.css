@@ -35,3 +35,38 @@ body {
   background-color: #00796b;
   color: #ffffff;
 }
+
+
+.guardar{
+  border: 2px solid #0277bd;
+}
+
+.guardar:hover{
+  background-color: #0277bd;
+  color: #ffffff;
+}
+
+table{
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+.marg{
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+th{   
+  border-top: solid 1px #e0e0e0;
+  border-right: solid 1px #e0e0e0; 
+  border-left: solid 1px #e0e0e0;
+  border-bottom: solid 1px #e0e0e0;
+}
+
+td {
+  width: 10px;
+  border-right: solid 1px #e0e0e0; 
+  border-left: solid 1px #e0e0e0;
+  border-bottom: solid 1px #e0e0e0;
+}
