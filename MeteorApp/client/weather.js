@@ -1,12 +1,13 @@
-import { Weather } from '../imports/api/weather'
+import { Meteor } from 'meteor/meteor';
+import { Weather } from '../imports/api/weatherDB'
 
-import './main.html';
+import './weather.html';
 
+Meteor.subscribe('weather');
 
 Router.configure({
-  layoutTemplate: 'ApplicationLayout'
+  layoutTemplate: 'WeatherApplicationLayout'
 });
-
 
 Router.route('/', function () {
   this.render('weather', {
@@ -20,6 +21,7 @@ Router.route('/', function () {
 
 Router.route('/edit/:_id', function () {
   this.render('edit', { 
+    to:"main",
     data: function (){
       return Weather.findOne(this.params._id);
     }
@@ -31,7 +33,9 @@ Router.route('/edit/:_id', function () {
 
 
 Router.route('/save', function () {
-  this.render('save');
+  this.render('save', {
+    to:"main"
+  });
   this.render('bar', {
     to:"navbar"
   });
@@ -50,10 +54,8 @@ Template.bar.helpers({
   },
 })
 
-
 Template.weather.helpers({
   weather() {
-    var upd = 0;
     return Weather.find();
   }
 })

@@ -6,12 +6,12 @@
 
 </body>
 
-<template name="ApplicationLayout">
+<template name="WeatherApplicationLayout">
   {{> yield "navbar"}}
   {{> yield "main"}}
 </template>
 
-<template style="width:100%;" name="weather">
+<template name="weather">
     <table class="centered">
       <thead>
         <tr>
@@ -40,7 +40,7 @@
 <template name="bar">
   <nav class="cyan lighten-1 valign-wrapper" style="margin-bottom: 5px;">
     <div style="margin-left: 10px;"> 
-      <h5>Temperatura en Cali</h5>
+      <h5>Temperatura en Cali, Colombia</h5>
     </div>
   </nav>
   <div class="row flex valign-wrapper center-align">
